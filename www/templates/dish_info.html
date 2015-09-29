@@ -1,0 +1,116 @@
+<!-- <div id="loader_div">
+    <i class="icon ion-loading-c" style="font-size:30pt" id="loader"></i>
+</div> -->
+<ion-view view-title="{{dishname}}">
+
+  <ion-nav-buttons side="right" >
+        <i class="ion-images" style="margin-right:10px;margin-top:10px;font-size:20pt" ng-click="openModal()" ng-if="dish_info.image_url != ''"></i>  
+      </ion-nav-buttons>
+
+  <ion-content class="custom-padding" style="background-color:#ebaa45 !important;" >
+  <div class="layer" style="height:100%" ng-if="dish_info.name == null">
+  <ion-list style="background:transparent">
+    <ion-item>Loading Dish... <ion-spinner icon="android" style="float:right"></ion-spinner></ion-item>
+    </ion-list>
+    </div>
+
+  <div ng-if="dish_info.name != null">
+
+  <div class="layer info-box">
+  	<div class="dish-content" ng-click="slide('#method_content','ec_content')" id="method">
+  		<span class="content-title"><i class="ion-ios-timer"></i>&nbsp;&nbsp;Method</span> 
+  		<!-- <span class="arrow">
+  			<i id="ec_content" class="ion-arrow-up-b"></i>
+  		</span> -->
+  	</div>
+  	<br>
+  	<div style="padding:10px" id="method_content">
+    <!-- <div style="width:100%;text-align:center;">
+    <img src="{{dish_info.image_url}}" style="height:120px;width:47%;float:left;margin-bottom:1em"/>
+    <img src="{{dish_info.image_url}}" style="height:120px;width:47%;float:right;margin-bottom:1em"/>
+    </div> -->
+
+	<span ng-bind-html="renderHtml(dish_info.method)" ></span>
+	</div>
+</div>
+<br>
+<div class="layer info-box">
+  	<div class="dish-content" ng-click="slide('#method_ing','ec_ing')">
+  		<span class="content-title"><i class="ion-ios-nutrition"></i>&nbsp;&nbsp;Ingredients</span> 
+  		<!-- <span class="arrow">
+  			<i id="ec_ing" class="ion-arrow-up-b"></i>
+  		</span> -->
+  	</div>
+  	<br>
+  	<div style="padding:10px;" id="method_ing">
+			<ul id="ing">
+				<li type="disk" ng-repeat="ing in ingredients">{{ing}}</li>
+			</ul>
+
+	</div>
+	<br>
+</div>
+<br>
+<div class="layer info-box" ng-if="dish_info.other_info != ''">
+  	<div class="dish-content" ng-click="slide('#method_extra','ec_extra')">
+  		<span class="content-title"><i class="ion-asterisk"></i>&nbsp;&nbsp;Extra Info</span> 
+  		<!-- <span class="arrow">
+  			<i id="ec_extra" class="ion-arrow-up-b"></i>
+  		</span> -->
+  	</div>
+  	<br>
+  	<div style="padding:10px;" id="method_extra">
+			<span ng-bind-html="dish_info.other_info"></span>
+
+	</div>
+</div>
+<br ng-if="dish_info.other_info != ''">
+<div style="background-color: rgba(255, 255, 255, 0.6);height:3em;padding:0.5em;">
+  <i style="float:left;font-style:italic;width:auto">Show your love!</i>
+  
+  <i class="ion-android-share-alt" style="font-size:20pt;color:#425F9C;float:right;margin-left:0.5em" ng-click="shareRecipe()"></i>
+
+  <i class="ion-android-favorite-outline" style="font-size:20pt;color:#DBA901;float:right;margin-left:0.5em" ng-click="make_favourite()" ng-if="!fav_status"></i>
+
+  <i class="ion-android-favorite" style="font-size:20pt;color:#DBA901;float:right;margin-left:0.5em" ng-if="fav_status" ng-click="remove_favourite()"></i>
+
+  <i class="ion-thumbsup" style="font-size:20pt;color:#DF0101;float:right;margin-left:0.5em" ng-if="!like_status" ng-click="post_like()"></i>
+
+  <i class="ion-thumbsdown" style="font-size:20pt;color:#DF0101;float:right;margin-left:0.5em" ng-if="like_status" ng-click="post_dislike()"></i>
+  <div class="clearfix"></div>
+</div>
+<br>
+<div class="layer info-box">
+  	<div class="dish-content" ng-click="slide('#method_com','ec_comm')">
+  		<span class="content-title"><i class="ion-quote"></i>&nbsp;&nbsp;Comments</span> 
+  		<!-- <span class="arrow">
+  			<i id="ec_comm" class="ion-arrow-up-b"></i>
+  		</span> -->
+  	</div>
+  	<br>
+    <div style="padding:10px" id="method_com">
+  		<span class="item item-input">
+    		<input type="text" placeholder="Comment" ng-model="comment.text" >
+    		<button type="submit" class="comment_btn button button-assertive" ng-click="post_comment()">
+    		<i class="ion-paper-airplane"></i>
+			</button>
+  		</span><br>
+		<div ng-repeat="comment in comment_text track by $index" class="comment-content" ng-if="$index<5">{{comment}}
+		<hr>
+		</div>
+    <span ng-if="comments.length == 0">Be the first one to comment!</span>
+    <span style="float:right;background:#F78181;padding:0.2em;border-radius:5px;color:white" ng-click="show_all_comments()" ng-if="comments.length > 5">Show all</span>
+    <br>
+	</div> 
+</div>
+<div style="padding:10px;height:50px;background:transparent" id="method_com">
+      &nbsp;
+  </div>
+</div>
+
+
+ 
+
+
+  </ion-content>
+</ion-view>

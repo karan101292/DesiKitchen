@@ -1,0 +1,41 @@
+<!-- <div id="loader_div">
+    <i class="icon ion-loading-c" style="font-size:30pt" id="loader"></i>
+</div> -->
+<ion-view view-title="Cooking Tips">
+  <ion-content class="custom-padding">
+
+  
+
+  	<div style="background:{{bgs[$index]}};height:auto;margin-bottom:15px;color:#000;padding:15px;" ng-repeat="tip in tips">
+  		<div>
+	    	<span style="float:left;font-weight:bold;">{{tip.title}}</span>
+	    	<!-- <span style="float:right;">{{tip.created_at | date:'MM/dd/yyyy' }}</span>  -->
+	    	<br><hr style="background-color:#fff">
+	    	</div>
+	    	<div style="font-size:10pt;white-space:normal;">{{tip.tip}} </div>  
+  	</div>	
+
+  	<div style="padding:10px;height:50px;background:transparent" id="method_com">
+      &nbsp;
+  </div>
+
+
+  <!-- <div class="layer" style="height:100%">
+	<ion-list style="background:transparent">
+		<ion-item ng-if="tips == null">Loading Dishes... <ion-spinner icon="android" style="float:right"></ion-spinner></ion-item>
+	    <ion-item ng-repeat="tip in tips" style="line-height:15px;padding:13px;background-color: transparent;" href="#/kitchen/dish_info/{{dish.id}}" class="dish-list-list" ng-class="{'item-margin' : $index > 0}">
+
+	    	<div>
+	    	<span style="float:left;font-weight:bold;">{{tip.title}}</span>
+	    	<span style="float:right;">{{tip.created_at | date:'MM/dd/yyyy' }}</span> <br><br>
+	    	</div>
+	    	
+	    	<div style="font-size:10pt;white-space:normal;">{{tip.tip}} </div>  
+	    </ion-item>
+	</ion-list>
+</div> -->
+
+
+
+  </ion-content>
+</ion-view>

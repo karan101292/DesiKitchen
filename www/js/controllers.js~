@@ -1,0 +1,185 @@
+app.controller('CategoryCtrl',['$scope','$http','$location','$state', function($scope, $http, $location,$state) {
+  $('#loader_div').show();
+  deviceid = window.localStorage.getItem("deviceid");
+  
+
+  $http.get(REST+'DesiKitchen/functions.php',{
+      params:{
+        function: 'get_category',
+        deviceid: '45822sfgdfs5dtsds5t'
+      }
+    }).
+      error(function(data){
+          alert('Sorry! unable to fetch topics');
+        }).
+      success(function(data) {
+       $scope.categories = data.cat[0];
+       $scope.user = data.user[0];
+       $('#loader_div').fadeOut();
+      });
+
+      if($scope.user==false){
+        $http.get(REST+'DesiKitchen/functions.php?function=create_user', {params:{
+          deviceid:'45822sfgdfs5dtsds5t'}  
+        }).
+          error(function(data){
+            
+          }).
+          success(function(data) {
+            if(data){
+              window.plugins.toast.show('You are now a registered user of DesiKitchen. Kindly complete your profile.', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});  
+            }
+        });  
+      }
+
+      $scope.choose_category = function(cat_id){
+        $state.go('kitchen.dish_list',{cat_id:cat_id});
+      }
+
+}]);
+
+
+app.controller('DishListCtrl',['$scope','$http','$location','$stateParams','$state', function($scope, $http, $location,$stateParams,$state) {
+  $('#loader_div').show();
+  var cat_id = $stateParams.cat_id;
+  $http.get(REST+'DesiKitchen/functions.php',{
+      params:{
+        function: 'get_dishes',
+        category_id: cat_id
+      }
+    }).
+      error(function(data){
+          alert('Sorry! unable to fetch topics');
+        }).
+      success(function(data) {
+       $scope.dishes = data;
+       $('#loader_div').fadeOut();
+      });
+
+      $scope.choose_dish = function(dish_id){
+        $state.go('kitchen.dish_info',{dish_id:dish_id});  
+      }
+
+}]);
+
+
+app.controller('DishInfoCtrl',['$scope','$http','$location','$stateParams','$state', function($scope, $http, $location,$stateParams,$state) {
+  $('#loader_div').show();
+  deviceid = window.localStorage.getItem("deviceid");
+  $scope.comment = {};
+  
+  var dish_id = $stateParams.dish_id;
+  $http.get(REST+'DesiKitchen/functions.php',{
+      params:{
+        function: 'get_dish_info',
+        dish_id: dish_id,
+        deviceid: '45822sfgdfs5dtsds5t'
+      }
+    }).
+      error(function(data){
+          alert('Sorry! unable to fetch topics');
+        }).
+      success(function(data) {
+       $scope.dish_info = data.info[0][0];
+       $scope.ingredients = data.ingredients[0][0];
+       $scope.comments = data.comments[0];
+       $scope.like_status = data.likes[0];
+       $('#loader_div').fadeOut();
+      });
+
+      $scope.post_like = function(){
+        $http.get(REST+'DesiKitchen/functions.php?function=post_like', {params:{
+          dish_id: dish_id,
+          deviceid: '45822sfgdfs5dtsds5t'
+        }}).
+          error(function(data){
+              window.plugins.toast.show('Something went wrong. Try again liking', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});    
+          }).
+          success(function(data) {  
+            $('#loader_div').fadeOut();
+            if(data){
+              $scope.like_status = true;
+            }else{
+              window.plugins.toast.show('Something went wrong. Try again liking', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+            }
+        });  
+      }
+
+      $scope.post_dislike = function(){
+        $http.get(REST+'DesiKitchen/functions.php?function=post_dislike', {params:{
+          dish_id: dish_id,
+          deviceid: '45822sfgdfs5dtsds5t'
+        }}).
+          error(function(data){
+              window.plugins.toast.show('Something went wrong. Try again disliking', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});    
+          }).
+          success(function(data) {  
+            $('#loader_div').fadeOut();
+            if(data){
+              $scope.like_status = false;
+            }else{
+              window.plugins.toast.show('Something went wrong. Try again disliking', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+            }
+        });  
+      }
+
+      $scope.post_comment = function(){
+
+        if($scope.comment.text == null){
+          window.plugins.toast.show('Write comment and hit that button again.', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});      
+          return;
+        }
+        $scope.comment.dish_id = $scope.dish_info.id;
+        $scope.comment.user = deviceid;
+        $('#loader_div').show();
+        $http.get(REST+'DesiKitchen/functions.php?function=post_comment', {params:{
+          dish_id: $scope.comment.dish_id,
+          deviceid: '45822sfgdfs5dtsds5t',
+          comment: $scope.comment.text 
+        }}).
+          error(function(data){
+              window.plugins.toast.show('Something went wrong. Try again commenting', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});    
+          }).
+          success(function(data) {  
+            $('#loader_div').fadeOut();
+            if(data){
+              $state.go($state.current, {}, {reload: true});
+            }else{
+              window.plugins.toast.show('Something went wrong. Try again commenting', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+            }
+        });
+      }
+
+	$scope.make_favourite = function(){
+        $http.get(REST+'DesiKitchen/functions.php?function=make_favourite', {params:{
+          dish_id: dish_id,
+          deviceid: '45822sfgdfs5dtsds5t'
+        }}).
+          error(function(data){
+              window.plugins.toast.show('Something went wrong. Try again to make it favourite', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});    
+          }).
+          success(function(data) {  
+            $('#loader_div').fadeOut();
+            if(data){
+              $scope.fav_status = true;
+            }else{
+              window.plugins.toast.show('Something went wrong. Try again make it favourite', 'long', 'bottom', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+            }
+        });  
+      }
+
+
+      // $scope.slide = function(id,element){
+      //   $(id).slideToggle();
+      //   tag = document.getElementById(element);
+      //   status = document.getElementById(element).getAttribute('class');
+      //   if(status.indexOf('up') != -1){
+      //     tag.setAttribute('class','ion-arrow-down-b');  
+      //   }else{
+      //     tag.setAttribute('class','ion-arrow-up-b');
+      //   }
+        
+      // }
+     
+
+}]);

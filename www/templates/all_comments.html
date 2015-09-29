@@ -1,0 +1,23 @@
+<!-- <div id="loader_div">
+    <i class="icon ion-loading-c" style="font-size:30pt" id="loader"></i>
+</div> -->
+<ion-modal-view style="background:#F6D8CE">
+  <ion-header-bar style="background:#F5A9A9">
+    <h1 class="title" >All Comments</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeComments()" style="color:#000"><i class="ion-close-circled"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding">
+  <div class="layer" style="height:100%;background:#fff">
+  	<ion-list style="background:#fff">
+	    <ion-item ng-repeat="comment in comment_text track by $index" style="line-height:20px;padding:13px;background-color: transparent;">
+	    	{{comment}}
+
+	    	
+	    </ion-item>
+	</ion-list>
+	</div>
+    
+  </ion-content>
+</ion-modal-view>

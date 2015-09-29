@@ -1,0 +1,17 @@
+/* Empty. Add your own CSS if you like */
+
+@font-face {
+    font-family: 'arabella';
+    src: url('fonts/arabella.ttf') format('truetype'),
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.col{
+border:0.1px solid lightgrey;
+margin-right:0.2em;
+margin-top:0.2em;
+text-align:center;
+font-family:arabella;
+}

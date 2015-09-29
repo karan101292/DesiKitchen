@@ -1,0 +1,43 @@
+<!-- <div id="loader_div">
+    <i class="icon ion-loading-c" style="font-size:30pt" id="loader"></i>
+</div> -->
+<ion-view view-title="{{catname}}">
+  <ion-content class="custom-padding">
+
+  <div class="layer" style="height:100%">
+	<ion-list style="background:transparent">
+		<ion-item ng-if="dishes == null">Loading Dishes... <ion-spinner icon="android" style="float:right"></ion-spinner></ion-item>
+	    <ion-item ng-repeat="dish in dishes" style="line-height:15px;padding:13px;background-color: transparent;" href="#/kitchen/dish_info/{{dish.id}}" class="dish-list-list" ng-class="{'item-margin' : $index > 0}">
+
+	    	<div style = 'background-image: url({{dish.image_url}}); float:left;margin-right:10px;' id="avatar" ng-if="dish.image_url != ''"></div>
+          	<div style = 'background-image: url(img/default.gif);float:left;margin-right:10px;' id="avatar" ng-if="dish.image_url == ''"></div>
+
+          	<div style="margin-top:5px">
+	    	<span style="float:left;font-weight:bold;">{{dish.name}}</span> 
+
+	    	<span style="font-size:8pt;float:right;font-style:italic">
+
+	    	<img src="img/chilli.png" style="width:2vh" ng-repeat="n in [] | range:dish.spicy"/>
+	    	<img src="img/sweet.png" style="width:2vh" ng-repeat="n in [] | range:dish.sweet"/>
+	    	</span><br>
+
+	    		    	<span style="float:left;font-style:italic;margin-top:7px">
+
+	    		    	<span><i class="ion-clock"></i> Time - {{dish.prep_time}}</span>
+	    		    	<span style="font-style:normal;">,</span> 
+	    		    	<span><i class="ion-person-stalker"></i> Serves - {{dish.serves}}</span>
+	    		    	</span> 
+	    	<span style="font-size:8pt;float:right;font-style:italic">{{dish.likes}} Likes</span>  
+	    	</div>	
+	    </ion-item>
+	</ion-list>
+</div>
+<div style="padding:10px;height:50px;background:transparent" id="method_com">
+      &nbsp;
+  </div>
+
+
+
+  </ion-content>
+  <button id="fab-gallery-list" class="button button-fab button-fab-bottom-right expanded button-energized-900 drop" ui-sref="kitchen.favourites"><i class="icon ion-heart"></i></button>
+</ion-view>

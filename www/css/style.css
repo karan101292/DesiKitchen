@@ -1,0 +1,260 @@
+/* Empty. Add your own CSS if you like */
+
+@font-face {
+    font-family: 'arabella';
+    src: url('fonts/Arabella.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+ .spinner {
+    stroke: #444;
+    fill: #444; 
+}
+
+    .spinner svg {
+   	  width: 25px !important;
+      height: 25px !important; }
+
+    .spinner.spinner-inverse {
+      stroke: #fff;
+      fill: #fff; }
+ 
+  .spinner-android {
+    stroke: #EF473A; }
+
+
+.pane, .view{
+	background: url('../img/bg.jpeg');
+	/*background-color: "#ebaa45";*/
+	background-repeat: no-repeat;
+	background-size: 100vw 100vh;
+}
+
+
+.custom-view{
+	background-color: "#ebaa45" !important;
+}
+
+.layer .item-content{
+	padding: 0 !important;
+	background-color: transparent !important;
+}
+.layer .item{
+	overflow: visible;
+    text-overflow: visible;
+    white-space: normal;
+}
+
+.layer {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: static;
+    top: 0;
+    left: 0;
+}
+
+.layer.info-box{
+	height:100%;
+	padding:0px;
+	border-bottom:2px solid rgba(201,186,162,0.41);
+}
+
+.dish-content{
+	width:100%;
+	height:2em;
+	line-height:2em;
+	text-align:center;
+	background:rgb(201,186,162);
+	color:#6E6E6E;
+}
+
+.item.item-margin{
+  border-top: 1px solid lightgrey !important;
+}
+
+.custom-padding{
+	padding: 10px;
+}
+
+.arrow{
+	float:right;
+	margin-right:0.5em;
+	font-size:20pt
+}
+
+.content-title{
+	float:left;
+	margin-left:1em;
+	font-weight:1000;
+  width: 80%;
+  text-align: left;
+}
+
+.dish-content img{
+	width:6vh;
+	margin-right:0.5em
+}
+
+.comment-content{
+	font-style:italic;
+	color:#000;
+}
+
+hr {height: 1px; 
+    background-color: #C9BAA2;
+    border:none
+}
+
+#avatar{
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin: 0em auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 99em;
+  -moz-border-radius: 99em;
+  border-radius: 99em;
+  /*box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);*/
+  z-index: 1000;
+}
+
+
+
+/*#loader_div{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:1000;
+	background: rgba(255,255,255,0.5);
+	display: none;
+}
+
+.loader{
+    position: absolute;
+    width: 100px; 
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px; 
+    margin-top: -50px;
+}*/
+
+/*#loader_div{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1000;
+  background: rgba(255,255,255,0.5);
+  display: none;
+  text-align: center;
+}
+
+#loader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: rgb(191,56,46);
+}*/
+
+.col{
+border:0.1px solid lightgrey;
+margin-right:0.2em;
+margin-top:0.2em;
+text-align:center;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+#ing{
+  list-style: none;
+  margin-left: 1em;
+  list-style-type: disc;
+}
+
+#ing li{
+	margin-top: 8px;
+}
+
+#method_ing#ing {
+  list-style-type: disc;
+}
+
+#method_content li{
+  list-style-type: disc;
+  margin-top: 5px;
+  margin-left: 1em;
+}
+
+.button-assertive.comment_btn{
+	min-height: 0;
+	min-width: 0;
+	font-size: 15pt;
+	padding: 0 0;
+	height: 30px;
+	width: 30px;
+	padding-top: 0;
+	line-height: 0;
+	margin-right: 0.5em;
+}
+
+/*==========================================================================================*/
+/*Image Gallery*/
+/*==========================================================================================*/
+
+.transparent {
+  background: transparent !important;
+}
+.image-modal {
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.fullscreen-image {
+  max-width: 80%;
+  max-height: 80%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+.slider {
+  width: 100%;
+  height: 100%;
+}
+
+p.info {
+  position: absolute;
+  bottom: 55px;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+/* Fix modal backdrop for smaller devices */
+@media (max-width: 679px) {
+  .active .modal-backdrop-bg {
+    opacity: .5;
+  }
+  .modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+  }
+}

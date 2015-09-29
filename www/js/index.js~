@@ -1,0 +1,71 @@
+var REST = 'http://192.168.0.107/'
+
+var app = angular.module('DesiKitchen', ['ionic','ui.router']);
+
+app.config(function($controllerProvider) {
+  app.controllerProvider = $controllerProvider;
+});
+
+function MyCtrl($scope, $ionicHistory) {
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+}
+
+
+app.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
+    for (var i=0; i<total; i++)
+      input.push(i);
+    return input;
+  };
+});
+
+
+app.run(function($rootScope, $location) {
+  $rootScope.$on('$routeChangeSuccess', function() {
+   
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+         function onDeviceReady() {
+                document.addEventListener("backbutton", onBackKeyDown, false);
+         }
+
+         function onBackKeyDown() {
+            if($location.path() === 'kitchen/category'){
+              navigator.app.exitApp();
+            }else{
+              // navigator.app.backHistory();
+               window.history.go(-1);
+            }
+         }
+    });
+});
+
+var kitchen_app = {
+    // Application Constructor
+    initialize: function() {
+      this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+      document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+      kitchen_app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+
+    }
+  };
+
+  kitchen_app.initialize();

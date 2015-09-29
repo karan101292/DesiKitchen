@@ -1,0 +1,40 @@
+<!-- <div id="loader_div">
+    <i class="icon ion-loading-c" style="font-size:30pt" id="loader"></i>
+</div> -->
+<ion-view view-title="Cuisines">
+  <ion-content class="padding">
+
+  <div class="layer" style="height:100%" ng-if="categories == null">
+  <ion-list style="background:transparent">
+    <ion-item >Loading Cuisines...<ion-spinner icon="android" style="float:right"></ion-spinner></ion-item>
+  </ion-list>
+  </div>
+
+  <div class="layer">
+	<!-- <div class="row" ng-repeat="category in categories" ng-if="$index % 3 == 0">
+
+  		<div class="col" ng-click="choose_category(categories[$index].id)"> <img src="img/icons/{{categories[$index].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index].name}}</div>
+
+  		<div class="col" ng-click="choose_category(categories[$index + 1].id)"> <img src="img/icons/{{categories[$index + 1].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index + 1].name}}</div>
+
+  		<div class="col" ng-click="choose_category(categories[$index + 2].id)"> <img src="img/icons/{{categories[$index + 2].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index + 2].name}}</div>
+
+	</div> -->
+  <div class="row" ng-repeat="category in categories" ng-if="$index % 3 == 0">
+
+      <div class="col" ng-click="choose_category(categories[$index].id, categories[$index].name)" > <img src="img/icons/{{categories[$index].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index].name}}</div>
+
+      <div class="col" ng-click="choose_category(categories[$index + 1].id, categories[$index + 1].name)"> <img src="img/icons/{{categories[$index + 1].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index + 1].name}}</div>
+
+      <div class="col" ng-click="choose_category(categories[$index + 2].id, categories[$index + 2].name)"> <img src="img/icons/{{categories[$index + 2].name}}.png" style="width:10vh;min-width:30%"/><br>{{categories[$index + 2].name}}</div>
+
+  </div>
+   </div>	
+
+   
+
+
+
+  </ion-content>
+   <button id="fab-gallery" class="button button-fab button-fab-bottom-right expanded button-energized-900 drop" ui-sref="kitchen.favourites"><i class="icon ion-heart"></i></button>
+</ion-view>
